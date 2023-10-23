@@ -1,75 +1,58 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+const viewportWidth = window.innerWidth;
+const viewportHeight = window.innerHeight;
+const scale = window.devicePixelRatio;
+const aspectRatio = 4 / 3;
+
+canvas.width = viewportWidth * scale;
+canvas.height = (viewportWidth / aspectRatio) * scale;
+canvas.style.width = viewportWidth + "px";
+canvas.style.height = viewportWidth / aspectRatio + "px";
+ctx.scale(scale, scale);
+
 ctx.strokeStyle = "rgba(0, 0, 0)";
 ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
 ctx.lineCap = "round";
-let [mouse_x, mouse_y] = [-1, -1];
-let [prev_x, prev_y] = [mouse_x, mouse_y];
-let shouldUpdate = false;
+let [prev_x, prev_y] = [-1, -1];
 let isDrawing = false;
 
-document.addEventListener("pointerdown", (e) => {
+canvas.addEventListener("pointerdown", (e) => {
   isDrawing = true;
-  const {
-    x: tx,
-    y: ty,
-    left,
-    top,
-    right,
-    bottom,
-  } = canvas.getBoundingClientRect();
-  if (
-    e.clientX < left ||
-    e.clientY < top ||
-    e.clientX > right ||
-    e.clientY > bottom
-  )
-    return;
-  prev_x = mouse_x = e.clientX - tx;
-  prev_y = mouse_y = e.clientY - ty;
+  setPosition(e);
 });
-document.addEventListener("pointerup", (e) => {
+
+canvas.addEventListener("pointermove", (e) => {
+  if (isDrawing) {
+    draw(e);
+  }
+});
+
+canvas.addEventListener("pointerup", () => {
   isDrawing = false;
-  prev_x = mouse_x;
-  prev_y = mouse_y;
 });
 
-document.addEventListener("pointermove", (e) => {
-  if (!isDrawing) return;
-  const {
-    x: tx,
-    y: ty,
-    left,
-    top,
-    right,
-    bottom,
-  } = canvas.getBoundingClientRect();
-  if (
-    e.clientX < left ||
-    e.clientY < top ||
-    e.clientX > right ||
-    e.clientY > bottom
-  )
-    return;
-  mouse_x = e.clientX - tx;
-  mouse_y = e.clientY - ty;
-});
+function setPosition(e) {
+  const { x, y } = getMousePos(canvas, e);
+  prev_x = x;
+  prev_y = y;
+}
 
-const draw = () => {
+function draw(e) {
+  const { x, y } = getMousePos(canvas, e);
   ctx.beginPath();
   ctx.moveTo(prev_x, prev_y);
-  ctx.lineTo(mouse_x, mouse_y);
+  ctx.lineTo(x, y);
   ctx.stroke();
-  prev_x = mouse_x;
-  prev_y = mouse_y;
-};
-const update = () => {
-  if (!isDrawing) return;
+  prev_x = x;
+  prev_y = y;
+}
 
-  draw();
-};
-
-setInterval(() => {
-  update();
-}, 60);
+function getMousePos(canvas, e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top,
+  };
+}
