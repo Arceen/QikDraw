@@ -9,5 +9,5 @@ Some basic features need to be added first:
 - Color Picker
 - Brush Changer
 - Sliders for controlling colors
-  - HSL
-  - RGB
+- HSL
+- RGB
