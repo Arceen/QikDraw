@@ -1,3 +1,4 @@
+// element variables
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -18,6 +19,7 @@ ctx.lineCap = "round";
 let [prev_x, prev_y] = [-1, -1];
 let isDrawing = false;
 
+//====== ALL FUNCTIONS  START ========
 canvas.addEventListener("pointerdown", (e) => {
   isDrawing = true;
   setPosition(e);
@@ -49,6 +51,7 @@ function draw(e) {
   prev_y = y;
 }
 
+// mouse function
 function getMousePos(canvas, e) {
   const rect = canvas.getBoundingClientRect();
   return {
