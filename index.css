@@ -11,3 +11,12 @@ body {
 #canvas {
   border: 1px solid black;
 }
+#color-picker {
+  position: fixed;
+
+  height: 50px;
+  width: 50px;
+  border-radius: 30px;
+  border: 5px solid gray;
+  background-color: black;
+}
