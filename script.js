@@ -60,29 +60,46 @@ function getMousePos(canvas, e) {
   };
 }
 
-// Color Picker logic
-const colorPicker = document.getElementById("color-picker");
-colorPicker.addEventListener("mousedown", (e) => {
-  isDraggingColorPicker = true;
+// Other functions
 
-  // Calculate the initial offset from the mouse to the color picker
-  const offsetX = e.clientX - colorPicker.getBoundingClientRect().left;
-  const offsetY = e.clientY - colorPicker.getBoundingClientRect().top;
-
-  document.addEventListener("mousemove", moveColorPicker);
-
-  document.addEventListener("mouseup", () => {
-    isDraggingColorPicker = false;
-    document.removeEventListener("mousemove", moveColorPicker);
-  });
-
-  function moveColorPicker(e) {
-    if (isDraggingColorPicker) {
-      const x = e.clientX - offsetX;
-      const y = e.clientY - offsetY;
-
-      colorPicker.style.left = x + "px";
-      colorPicker.style.top = y + "px";
-    }
+const navPanel = document.getElementById("left-panel");
+const navBarChangeButtonSVG = document.querySelector("#change-sides svg ");
+const navBarChangeButton = document.getElementById("change-sides");
+navBarChangeButton.addEventListener("click", () => {
+  if (navPanel.style.left === "0px") {
+    navPanel.style.left = "auto";
+    navPanel.style.right = "0px";
+    navBarChangeButtonSVG.style.transform = "rotate(180deg)";
+  } else {
+    navPanel.style.right = "auto";
+    navPanel.style.left = "0px";
+    navBarChangeButtonSVG.style.transform = "rotate(0deg)";
   }
 });
+
+// // Color Picker logic
+// const colorPicker = document.getElementById("color-picker");
+// colorPicker.addEventListener("mousedown", (e) => {
+//   isDraggingColorPicker = true;
+
+//   // Calculate the initial offset from the mouse to the color picker
+//   const offsetX = e.clientX - colorPicker.getBoundingClientRect().left;
+//   const offsetY = e.clientY - colorPicker.getBoundingClientRect().top;
+
+//   document.addEventListener("mousemove", moveColorPicker);
+
+//   document.addEventListener("mouseup", () => {
+//     isDraggingColorPicker = false;
+//     document.removeEventListener("mousemove", moveColorPicker);
+//   });
+
+//   function moveColorPicker(e) {
+//     if (isDraggingColorPicker) {
+//       const x = e.clientX - offsetX;
+//       const y = e.clientY - offsetY;
+
+//       colorPicker.style.left = x + "px";
+//       colorPicker.style.top = y + "px";
+//     }
+//   }
+// });

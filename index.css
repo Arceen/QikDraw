@@ -11,12 +11,37 @@ body {
 #canvas {
   border: 1px solid black;
 }
-#color-picker {
-  position: fixed;
 
-  height: 50px;
-  width: 50px;
-  border-radius: 30px;
+#left-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 80px;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+#color-picker {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
   border: 5px solid gray;
   background-color: black;
+}
+#change-sides {
+  position: relative;
+  bottom: 0;
+}
+
+#change-sides > svg {
+  background-color: white;
+  color: blue;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: 5px solid black;
 }
