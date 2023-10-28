@@ -15,6 +15,7 @@ ctx.scale(scale, scale);
 
 ctx.strokeStyle = "rgba(0, 0, 0)";
 ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+ctx.lineWidth = "100";
 ctx.lineCap = "round";
 let [prev_x, prev_y] = [-1, -1];
 let isDrawing = false;
@@ -76,6 +77,9 @@ navBarChangeButton.addEventListener("click", () => {
     navBarChangeButtonSVG.style.transform = "rotate(0deg)";
   }
 });
+
+// utils
+// const colorPuck =
 
 // // Color Picker logic
 // const colorPicker = document.getElementById("color-picker");
