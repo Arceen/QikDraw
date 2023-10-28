@@ -78,6 +78,34 @@ navBarChangeButton.addEventListener("click", () => {
   }
 });
 
+// block on color selection
+const colorSelection = document.getElementById("color-selection");
+colorSelection.addEventListener("mouseover", (e) => {
+  console.log("Take events");
+  e.preventDefault();
+  isDrawing = false;
+});
+
+const isMouseInElement = (element, event) => {
+  const { left, top, right, bottom } = element.getBoundingClientRect();
+  if (
+    event.clientX >= left &&
+    event.clientY >= top &&
+    event.clientX <= right &&
+    event.clientY <= bottom
+  ) {
+    return true;
+  }
+  return false;
+};
+
+document.addEventListener("pointerdown", (e) => {
+  if (!isMouseInElement(colorSelection, e)) {
+    colorSelection.style.display = "none";
+  }
+  // colorSelection.style.display = "none";
+});
+
 // utils
 // const colorPuck =
 
