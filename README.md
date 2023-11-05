@@ -1,15 +1,14 @@
 # QikDraw
-An Open Source drawing application with html, css, vanilla js and the canvas api/
+An Open Source drawing application with html, css, vanilla js and the canvas api -> [QikDraw](https://arceen.github.io/QikDraw/)
 
 # Features
-Currently an entire canvas for basic drawing
-![image](https://github.com/Arceen/QikDraw/assets/24473439/b62bc7b2-6cbf-4faa-9a28-734acf2d7894)
-
-
-# Next Steps
-Some basic features need to be added first:
-- Color Picker
-- Brush Changer
+- Basic Canvas
 - Sliders for controlling colors
+- Updating all colors
+![image](https://github.com/Arceen/QikDraw/assets/24473439/1c9d4a4b-8c7c-43ca-a08b-5890dbe04b46)
+
+# Upcoming Features
+- Brush Size Changer
+- Color Picker
 - HSL
 - RGB
