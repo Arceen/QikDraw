@@ -65,16 +65,22 @@ body {
   justify-content: flex-start;
   gap: 20px;
   padding: 10px 10px;
+  backdrop-filter: blur(5px);
 }
 #color-selected {
   background-color: black;
   width: 180px;
   height: 180px;
+  border-radius: 5px;
 }
 .slider-container {
   width: 180px;
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 /* Styling the slider input */
@@ -82,7 +88,7 @@ body {
   -webkit-appearance: none;
   width: 100%;
   height: 5px;
-  background: gray;
+  background: #ccc;
   outline: none;
   opacity: 0.8;
   -webkit-transition: 0.2s;
@@ -115,8 +121,49 @@ body {
   border: 1px solid red;
 }
 
+#slider2::-webkit-slider-thumb {
+  border: 1px solid green;
+  background: #181;
+}
+
+#slider3::-webkit-slider-thumb {
+  background: #22f;
+  border: 1px solid blue;
+}
+
+#slider4::-webkit-slider-thumb {
+  background: black;
+  border: 1px solid black;
+}
+#slider2::-moz-range-thumb {
+  border: 1px solid green;
+  background: #1d1;
+}
+
+#slider3::-moz-range-thumb {
+  border: 1px solid blue;
+  background: #22f;
+}
+
+#slider4::-moz-range-thumb {
+  border: 1px solid black;
+  background: black;
+}
 /* Styling the slider value display */
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.slider-val {
+  background-color: white;
+  border: 1px solid #4b4b4b;
+  font-size: 0.8rem;
+  padding: 3px 4px;
+  min-width: 40px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
 #slider1-value {
-  padding: 10px;
-  font-size: 1rem;
 }

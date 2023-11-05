@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canvas</title>
+  <title>QikDraw</title>
   <link rel="stylesheet" href="index.css" />
 </head>
 
@@ -14,8 +14,22 @@
     </div>
     <div id="color-slider-div">
       <div class="slider-container">
-        <input type="range" min="0" max="255" value="0" class="slider" id="slider1">
-        <span id="slider1-value">0</span>
+        <div class="slider-row">
+          <input type="range" min="0" max="255" value="0" class="slider" id="slider1">
+          <span id="slider1-value" class="slider-val">0</span>
+        </div>
+        <div class="slider-row">
+          <input type="range" min="0" max="255" value="0" class="slider" id="slider2">
+          <span id="slider2-value" class="slider-val">0</span>
+        </div>
+        <div class="slider-row">
+          <input type="range" min="0" max="255" value="0" class="slider" id="slider3">
+          <span id="slider3-value" class="slider-val">0</span>
+        </div>
+        <div class="slider-row">
+          <input type="range" min="0" max="1" value="1" class="slider" step="0.01" id="slider4">
+          <span id="slider4-value" class="slider-val">1</span>
+        </div>
       </div>
     </div>
 

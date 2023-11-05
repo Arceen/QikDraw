@@ -66,7 +66,7 @@ function getMousePos(canvas, e) {
 const navPanel = document.getElementById("left-panel");
 const navBarChangeButtonSVG = document.querySelector("#change-sides svg ");
 const navBarChangeButton = document.getElementById("change-sides");
-navBarChangeButton.addEventListener("click", () => {
+navBarChangeButton.addEventListener("pointerdown", () => {
   if (navPanel.style.left === "0px") {
     navPanel.style.left = "auto";
     navPanel.style.right = "0px";
@@ -80,7 +80,7 @@ navBarChangeButton.addEventListener("click", () => {
 
 // block on color selection
 const colorSelection = document.getElementById("color-selection");
-colorSelection.addEventListener("mouseover", (e) => {
+colorSelection.addEventListener("pointerover", (e) => {
   console.log("Take events");
   e.preventDefault();
   isDrawing = false;
@@ -100,38 +100,86 @@ const isMouseInElement = (element, event) => {
 };
 
 document.addEventListener("pointerdown", (e) => {
-  if (!isMouseInElement(colorSelection, e)) {
+  if (isMouseInElement(colorPicker, e)) {
+    return;
+  } else if (!isMouseInElement(colorSelection, e)) {
+    console.log("Comes to document mousedown");
     colorSelection.style.display = "none";
+  } else {
+    colorSelection.style.display = "flex";
   }
-  // colorSelection.style.display = "none";
 });
 
 // utils
 // const colorPuck =
 
 // // Color Picker logic
-// const colorPicker = document.getElementById("color-picker");
-// colorPicker.addEventListener("mousedown", (e) => {
-//   isDraggingColorPicker = true;
+const colorPicker = document.getElementById("color-picker");
+colorPicker.addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  console.log(colorSelection.style.display);
+  if (colorSelection.style.display === "none") {
+    console.log("INSIDE");
+    console.log(colorSelection.style.display);
+    colorSelection.style.display = "flex";
+  }
+});
 
-//   // Calculate the initial offset from the mouse to the color picker
-//   const offsetX = e.clientX - colorPicker.getBoundingClientRect().left;
-//   const offsetY = e.clientY - colorPicker.getBoundingClientRect().top;
+// Handle Sliders
 
-//   document.addEventListener("mousemove", moveColorPicker);
+// Initialize
 
-//   document.addEventListener("mouseup", () => {
-//     isDraggingColorPicker = false;
-//     document.removeEventListener("mousemove", moveColorPicker);
-//   });
+let colorVal1 = 0;
+const slider1 = document.getElementById("slider1");
+const sliderText1 = document.getElementById("slider1-value");
 
-//   function moveColorPicker(e) {
-//     if (isDraggingColorPicker) {
-//       const x = e.clientX - offsetX;
-//       const y = e.clientY - offsetY;
+let colorVal2 = 0;
+const slider2 = document.getElementById("slider2");
+const sliderText2 = document.getElementById("slider2-value");
 
-//       colorPicker.style.left = x + "px";
-//       colorPicker.style.top = y + "px";
-//     }
-//   }
-// });
+let colorVal3 = 0;
+const slider3 = document.getElementById("slider3");
+const sliderText3 = document.getElementById("slider3-value");
+
+let colorVal4 = 1;
+const slider4 = document.getElementById("slider4");
+const sliderText4 = document.getElementById("slider4-value");
+
+// Events
+
+slider1.addEventListener("input", function () {
+  colorVal1 = +slider1.value;
+  sliderText1.innerText = "" + colorVal1;
+  handleColorUpdate();
+});
+
+slider2.addEventListener("input", function () {
+  colorVal2 = +slider2.value;
+  sliderText2.innerText = "" + colorVal2;
+
+  handleColorUpdate();
+});
+
+slider3.addEventListener("input", function () {
+  colorVal3 = +slider3.value;
+  sliderText3.innerText = "" + colorVal3;
+
+  handleColorUpdate();
+});
+
+slider4.addEventListener("input", function () {
+  colorVal4 = parseFloat(slider4.value, 2);
+  sliderText4.innerText = "" + colorVal4;
+
+  handleColorUpdate();
+});
+
+// handle when color is changed
+const colorSelected = document.getElementById("color-selected");
+
+const handleColorUpdate = () => {
+  const parsedColor = `rgba(${colorVal1}, ${colorVal2}, ${colorVal3}, ${colorVal4})`;
+  colorSelected.style.backgroundColor = parsedColor;
+  colorPicker.style.backgroundColor = parsedColor;
+  ctx.strokeStyle = parsedColor;
+};
