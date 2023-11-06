@@ -100,6 +100,9 @@ const isMouseInElement = (element, event) => {
 };
 
 document.addEventListener("pointerdown", (e) => {
+  if(isMouseInElement(brushSizePanel, e)){
+    return;
+  }
   if (isMouseInElement(colorPicker, e)) {
     return;
   } else if (!isMouseInElement(colorSelection, e)) {
@@ -183,3 +186,18 @@ const handleColorUpdate = () => {
   colorPicker.style.backgroundColor = parsedColor;
   ctx.strokeStyle = parsedColor;
 };
+
+// brush size
+
+const brushSizePanel = document.getElementById("brush-size-panel");
+colorPicker.addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  console.log(colorSelection.style.display);
+  if (colorSelection.style.display === "none") {
+    console.log("INSIDE");
+    console.log(colorSelection.style.display);
+    colorSelection.style.display = "flex";
+  }
+});
+
+const sizeSlider =
