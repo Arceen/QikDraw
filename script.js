@@ -20,6 +20,18 @@ ctx.lineCap = "round";
 let [prev_x, prev_y] = [-1, -1];
 let isDrawing = false;
 
+window.addEventListener("resize", (e) => {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  const scale = window.devicePixelRatio;
+  const aspectRatio = 4 / 3;
+
+  canvas.width = viewportWidth * scale;
+  canvas.height = (viewportWidth / aspectRatio) * scale;
+  canvas.style.width = viewportWidth + "px";
+  canvas.style.height = viewportWidth / aspectRatio + "px";
+  ctx.scale(scale, scale);
+});
 //====== ALL FUNCTIONS  START ========
 canvas.addEventListener("pointerdown", (e) => {
   isDrawing = true;
@@ -100,7 +112,7 @@ const isMouseInElement = (element, event) => {
 };
 
 document.addEventListener("pointerdown", (e) => {
-  if(isMouseInElement(brushSizePanel, e)){
+  if (isMouseInElement(brushSizePanel, e)) {
     return;
   }
   if (isMouseInElement(colorPicker, e)) {
@@ -200,4 +212,16 @@ colorPicker.addEventListener("pointerdown", (e) => {
   }
 });
 
-const sizeSlider =
+const fillGreySliderText = document.getElementById("fill-grey-size");
+
+const sizeSlider = document.getElementById("sizeslider");
+const sizeSliderText = document.getElementById("size-value");
+
+sizeSlider.addEventListener("input", function () {
+  const newSize = parseInt(sizeSlider.value);
+  fillGreySliderText.style.height = `${newSize}px`;
+  fillGreySliderText.style.width = `${newSize}px`;
+  fillGreySliderText.style.borderRadius = `${newSize}px`;
+  sizeSliderText.innerText = "" + newSize;
+  ctx.lineWidth = newSize;
+});

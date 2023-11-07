@@ -23,7 +23,9 @@ body {
   bottom: 0;
   height: 100vh;
   width: 80px;
-  background-color: black;
+  backdrop-filter: blur(5px);
+  border: 1px solid black;
+  background-color: #aaa2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,7 +168,18 @@ body {
   border-radius: 4px;
   margin-left: 8px;
 }
-#slider1-value {
+#size-value {
+  font-size: 2rem;
+}
+#size-value-wrapper {
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 #brush-size-panel {
@@ -174,9 +187,22 @@ body {
   top: 50%;
   left: 50%;
   width: 200px;
-  height: 100px;
+  height: 200px;
   transform: translate(-50%, -50%);
   backdrop-filter: blur(5px);
   background-color: #fffa;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#fill-grey-size {
+  background-color: #4b4b4b4b;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  backdrop-filter: blur(5px);
 }
