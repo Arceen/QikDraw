@@ -168,11 +168,14 @@ body {
   border-radius: 4px;
   margin-left: 8px;
 }
+#sizeslider {
+  width: 80%;
+}
 #size-value {
   font-size: 2rem;
 }
 #size-value-wrapper {
-  border: 1px solid black;
+  border: 1px solid white;
   height: 100px;
   width: 100px;
   border-radius: 100px;
@@ -180,6 +183,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  color: white;
 }
 
 #brush-size-panel {
@@ -189,20 +193,32 @@ body {
   width: 200px;
   height: 200px;
   transform: translate(-50%, -50%);
+  background-color: #4b4b4b;
   backdrop-filter: blur(5px);
-  background-color: #fffa;
   border: 1px solid black;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 }
 #fill-grey-size {
-  background-color: #4b4b4b4b;
+  background-color: royalblue;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
   backdrop-filter: blur(5px);
+}
+
+#size-picker {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
 }

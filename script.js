@@ -112,16 +112,23 @@ const isMouseInElement = (element, event) => {
 };
 
 document.addEventListener("pointerdown", (e) => {
-  if (isMouseInElement(brushSizePanel, e)) {
+  if (isMouseInElement(sizePicker, e)) {
     return;
   }
   if (isMouseInElement(colorPicker, e)) {
     return;
-  } else if (!isMouseInElement(colorSelection, e)) {
+  }
+  if (!isMouseInElement(colorSelection, e)) {
     console.log("Comes to document mousedown");
     colorSelection.style.display = "none";
   } else {
     colorSelection.style.display = "flex";
+  }
+  if (!isMouseInElement(brushSizePanel, e)) {
+    console.log("Comes to document mousedown 2");
+    brushSizePanel.style.display = "none";
+  } else {
+    brushSizePanel.style.display = "flex";
   }
 });
 
@@ -202,6 +209,7 @@ const handleColorUpdate = () => {
 // brush size
 
 const brushSizePanel = document.getElementById("brush-size-panel");
+const sizePicker = document.getElementById("size-picker");
 colorPicker.addEventListener("pointerdown", (e) => {
   e.preventDefault();
   console.log(colorSelection.style.display);
@@ -223,5 +231,18 @@ sizeSlider.addEventListener("input", function () {
   fillGreySliderText.style.width = `${newSize}px`;
   fillGreySliderText.style.borderRadius = `${newSize}px`;
   sizeSliderText.innerText = "" + newSize;
+  sizePicker.innerText = "" + newSize;
   ctx.lineWidth = newSize;
+});
+
+sizePicker.addEventListener("pointerdown", (e) => {
+  console.log("Inside brush size picker!");
+  e.preventDefault();
+  console.log(brushSizePanel.style.display);
+  if (brushSizePanel.style.display === "none") {
+    console.log("INSIDE display none");
+    console.log(brushSizePanel.style.display);
+    brushSizePanel.style.display = "flex";
+    console.log(brushSizePanel.style.display);
+  }
 });
